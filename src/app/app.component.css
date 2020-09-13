@@ -1,0 +1,113 @@
+/* Styles from Angular CLI */
+
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* font-size: 16px; */
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
+    font-size: 1.2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 8px 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* End styles from Angular CLI */
+
+/* My additions: */
+
+#wrapper {
+    width: 62em;
+    margin: 0 auto;
+    padding: 2em 6em 8em;
+    /* background-color: #0074d9; */
+    background-color: #F2414C;
+    background-color: #dd0031;
+    /* border-top: 4px solid #0be6d7; */
+    /* border-top: 4px solid #F2414C; */
+    color: white;
+    box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* li a:hover {
+    text-decoration: underline;
+} */
+
+li a {
+    padding:0.6em;
+    color: white;
+    /* text-decoration: none; */
+    text-decoration: underline;
+}
+
+li .active {
+    background-color: white;
+    font-style: bold;
+    /* color: #0074d9; */
+    color: #dd0031;
+    text-decoration: none;
+}
+
+li .active, li .active:hover {
+    text-decoration: none;
+    /* cursor: pointer; */
+    pointer-events: none;
+}
+
+li {
+    display: inline;
+    margin-right: 1em;
+}
+
+/* End My additions: */
+
+
+/* Responsive Styles from Angular CLI */
+
+/* @media screen and (max-width: 767px) {
+
+  .card-container > *:not(.circle-link) ,
+  .terminal {
+    width: 100%;
+  }
+
+  .card:not(.highlight-card) {
+    height: 16px;
+    margin: 8px 0;
+  }
+
+  .card.highlight-card span {
+    margin-left: 72px;
+  }
+
+  svg#rocket-smoke {
+    right: 120px;
+    transform: rotate(-5deg);
+  }
+}
+
+@media screen and (max-width: 575px) {
+  svg#rocket-smoke {
+    display: none;
+    visibility: hidden;
+  }
+} */
+
+/* End Responsive Styles from Angular CLI */
