@@ -1,0 +1,37 @@
+<h1 *ngIf="!submitted">Welcome to register!</h1>
+<h2 *ngIf="submitted">You are now registered and can log in to add and/or edit reports.</h2>
+
+<!-- Below in order to tell Angular that there is a model for the form as well as listening for a submit event emitted by the form element. The submit event is triggered by clicking the button with a type="submit" and is caught by the ngSubmit directive(the ngSubmit directive binds itself to the click event of the button with type="submit") which then invokes the onSubmit() method in register.component.ts -->
+<form *ngIf="!submitted" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <legend>Register</legend>
+        <p>
+            <label>
+                E-mail:
+                <!-- In order to bind the form fields to the FormControl models in register.component.ts one uses the FormControlName directive - the values of the form control names(formControlName) below are set to the name of the corresponding FormControl instance in the component class i e in register.component.ts:-->
+                <input type="e-mail" name="e-mail" formControlName="email" required>
+                <div class="form-control-feedback"
+                *ngIf="email.errors && (email.dirty || email.touched)">
+                <p *ngIf="email.errors.required">Email is required</p>
+                <p *ngIf="email.errors.pattern">The email address is not valid.</p>
+                <!-- <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p> (1) -->
+            </div>
+            </label>
+        </p>
+        <p>
+            <label>
+                Password:
+                <input type="password" name="password" formControlName="password" required>
+            </label>
+        </p>
+        <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </fieldset>
+</form>
+
+<p>
+    <!-- the method value invoked on the form control e_mail in register.component.ts, show the current value in the input field for e-mail: -->
+    <!-- E-mail: {{ e_mail.value }} -->
+</p>
+
+<p *ngIf="!submitted">{{ errorMessage }}</p>
+<p *ngIf="submitted">{{ successMessage }}</p>

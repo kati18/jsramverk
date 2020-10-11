@@ -1,11 +1,3 @@
-<!-- Below i. e. <app-me></app-me> can be used in combination with:
-templateUrl: './app.component.html',
-in app.component.ts instead of only
-template: `<app-me></app-me>`,
-in app.component.ts: -->
-
-<!-- <app-me></app-me> // an element that refers to the selector 'app-me' in me.component.ts -->
-
 <div id="wrapper">
     <header>
         <h1>My First Angular App in course jsramverk</h1>
@@ -14,20 +6,42 @@ in app.component.ts: -->
     <nav>
       <ul>
         <!-- <li><a routerLink="/" routerLinkActive="active">Me</a></li> -->
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Me</a></li>
+        <li>
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Me</a>
+        </li>
         <!-- <li><a routerLink="/reports/week/1" routerLinkActive="active">Kmom01</a></li> -->
 
-<!-- Below added as a test: -->
-        <li *ngFor="let report of reports">
-          <a routerLink="/reports/week/{{ report.week_no }}" routerLinkActive="active">{{ report.report }}</a>
+    <!-- Below inactivated 200925 13.45: -->
+            <!-- <li *ngFor="let report of reports">
+              <a routerLink="/reports/week/{{ report.week_no }}" routerLinkActive="active">{{ report.report }}</a>
+            </li> -->
+    <!-- En of Below inactivated 200925 13.45: -->
+
+        <li>
+            <a routerLink="/reports" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Reports</a>
         </li>
-<!-- End test -->
+        <li>
+            <a routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+
+        <li>
+            <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
+            <!-- <a routerLink="/login" routerLinkActive="active">Login</a> -->
+        </li>
+
+        <li>
+            <a *ngIf="isLoggedIn" (click)="onLogout()" class="logout">Logout</a>
+            <!-- <button (click)="onLogout()">Logout</button> -->
+        </li>
 
       </ul>
     </nav>
     <!-- The routed views render in the <router-outlet>-->
     <main>
-        <!-- an element that is a router directive and that tells the router where to display routed views -->
+        <!-- an element that is a router directive and that tells the router where to display routed views:-->
         <router-outlet></router-outlet>
     </main>
+    <footer>
+        <p class="copyright">Katja Tibe &copy; 2020</p>
+    </footer>
 </div> <!--End id="wrapper"-->

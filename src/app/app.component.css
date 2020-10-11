@@ -76,6 +76,14 @@ li {
     margin-right: 1em;
 }
 
+.copyright {
+    text-align: center;
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
 /* End My additions: */
 
 

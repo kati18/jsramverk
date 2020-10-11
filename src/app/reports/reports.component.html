@@ -1,0 +1,16 @@
+<h1>My reports</h1>
+<h3 *ngIf="!isLoggedIn">If you want to edit and/or add a text you need to be registered and logged in.</h3>
+
+<div *ngFor="let reportText of reportTexts">
+<!-- <div *ngFor="let reportText of reportTexts" markdown ngPreserveWhitespace> -->
+    <div *ngIf="reportText.week_no=='10'; else elseBlock">
+        <h2> Kmom {{ reportText.week_no }}</h2>
+        <p markdown ngPreserveWhitespace> {{ reportText.report_text }}</p>
+        <a  *ngIf="isLoggedIn" routerLink="/reports/week/{{ reportText.week_no }}">Edit</a>
+    </div>
+    <ng-template #elseBlock>
+        <h2> Kmom 0{{ reportText.week_no }}</h2>
+        <p markdown ngPreserveWhitespace> {{ reportText.report_text }}</p>
+        <a  *ngIf="isLoggedIn" routerLink="/reports/week/{{ reportText.week_no }}">Edit</a>
+    </ng-template>
+</div>

@@ -6,24 +6,39 @@ import { NgModule } from '@angular/core';
 import { MarkdownModule } from 'ngx-markdown';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+//Below delares the reactive-form directives needed to use reactive forms
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MeComponent } from './me/me.component';
 import { ReportComponent } from './report/report.component';
+import { RegisterComponent } from './register/register.component';
+import { ReportsComponent } from './reports/reports.component';
+import { LoginComponent } from './login/login.component';
+
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeComponent,
-    ReportComponent
+    ReportComponent,
+    RegisterComponent,
+    ReportsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  //The main application view, called the root component, which hosts all other app views. Only the root NgModule should set the bootstrap property:
+  providers: [
+    httpInterceptorProviders
+  ],
+  //The main application view, called the root component and top level component, which hosts all other app views. Only the root NgModule should set the bootstrap property:
   bootstrap: [AppComponent]
 })
 export class AppModule {

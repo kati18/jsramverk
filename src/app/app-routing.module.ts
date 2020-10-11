@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MeComponent } from './me/me.component'; // the ext .ts is & should be left out
-import { ReportComponent } from './report/report.component'; // the ext .ts is & should be left out
+//The extension .ts is and should be left out in the imports below:
+// import { AppComponent } from './app.component';
+import { MeComponent } from './me/me.component';
+import { ReportComponent } from './report/report.component';
+import { ReportsComponent } from './reports/reports.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 /* Below tells the Router which view to display when a user clicks a link
 or pastes a URL into the browser address bar.*/
 const routes: Routes = [
-    // { path: 'reports/week/1', component: ReportComponent },
-// Below added as a test:
+    { path: 'reports', component: ReportsComponent },
     { path: 'reports/week/:week_no', component: ReportComponent },
-// End of test:
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent},
     { path: '', component: MeComponent },
     { path: '**', component: MeComponent }
 ];
