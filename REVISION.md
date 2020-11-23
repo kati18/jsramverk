@@ -11,4 +11,4 @@ v2.0.0 (2020-10-11)
 
 v4.0.0 (2020-11-23)
 -------------------
-* Functiontests/UI-tests using mocha, selenium-webdriver and http-server added.
+* Functional tests/UI-tests using mocha, selenium-webdriver and http-server added.
