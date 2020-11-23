@@ -43,7 +43,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/src/app/common/global-constants.ts
+#/src/app/common/global-constants.ts - required for functional/UI-testing
 
 # System Files
 .DS_Store
