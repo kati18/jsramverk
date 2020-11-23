@@ -1,29 +1,32 @@
-<h1 *ngIf="!submitted">Welcome to login!</h1>
+<h1 *ngIf="!submitted" id="login-title">Welcome to login!</h1>
 <h2 *ngIf="isLoggedIn">You are now logged in and can add and/or edit reports!</h2>
 
 <!-- Below in order to tell Angular that there is a model for the form as well as listening for a submit event emitted by the form element. The submit event is triggered by clicking the button with a type="submit" and is caught by the ngSubmit directive(the ngSubmit directive binds itself to the click event of the button with type="submit") which then invokes the onSubmit() method in login.component.ts -->
 <!-- <form *ngIf="!submitted" [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
 <form *ngIf="!submitted || !isLoggedIn" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <fieldset>
-        <legend>Login</legend>
+        <legend class="login-legend">Login</legend>
         <p>
-            <label>
+            <label class="login-label">
                 E-mail:
                 <!-- In order to bind the form fields to the FormControl models in register.component.ts one uses the FormControlName directive - the values of the form control names(formControlName) below are set to the name of the corresponding FormControl instance in the component class i e in register.component.ts:-->
-                <input type="e-mail" name="e-mail" formControlName="email" required>
+                <input type="e-mail" name="e-mail" formControlName="email" required placeholder="Enter registered e-mail" class="login-input">
             </label>
         </p>
         <p>
-            <label>
+            <label class="login-label">
                 Password:
-                <input type="password" name="password" formControlName="password" required>
+                <input type="password" name="password" formControlName="password" required placeholder="Enter registered password" class="login-input">
             </label>
         </p>
-        <button type="submit" [disabled]="!loginForm.valid">Login</button>
+        <button type="submit" [disabled]="!loginForm.valid" class="login-button">Login</button>
     </fieldset>
 </form>
 
 <p *ngIf="!submitted">{{ errorMessage }}</p>
+<!-- Tillägg 201026: -->
+<!-- <p>{{ errorMessage }}</p> -->
+<!-- End tillägg 201026: -->
 
 <!-- <button (click)= "getExpiration()">Get expiration date</button>
 <p>{{ expiration }}</p> -->

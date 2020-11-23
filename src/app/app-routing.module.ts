@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//The extension .ts is and should be left out in the imports below:
+// The extension .ts is and should be left out in the imports below:
 // import { AppComponent } from './app.component';
 import { MeComponent } from './me/me.component';
 import { ReportComponent } from './report/report.component';
@@ -14,16 +14,28 @@ or pastes a URL into the browser address bar.*/
 const routes: Routes = [
     { path: 'reports', component: ReportsComponent },
     { path: 'reports/week/:week_no', component: ReportComponent },
-    {path: 'register', component: RegisterComponent},
-    {path: 'login', component: LoginComponent},
+    { path: 'register', component: RegisterComponent},
+    { path: 'login', component: LoginComponent},
     { path: '', component: MeComponent },
     { path: '**', component: MeComponent }
 ];
 
+// @NgModule({
+// /* The imports array is configured with the routes at the app´s root level.,
+//    The forRoot() method supplies the services and directives needed for routing.: */
+//   imports: [RouterModule.forRoot(routes)],
+//   exports: [RouterModule]// -> the AppRoutingModule becomes available throughout the app
+// })
+
+// Test 201023 - handles the scrolling in the app:
 @NgModule({
 /* The imports array is configured with the routes at the app´s root level.,
    The forRoot() method supplies the services and directives needed for routing.: */
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled'
+  })],
   exports: [RouterModule]// -> the AppRoutingModule becomes available throughout the app
 })
+// End test 201023 - handles the scrolling in the app
+
 export class AppRoutingModule { }

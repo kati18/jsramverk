@@ -21,18 +21,30 @@
             <a routerLink="/reports" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Reports</a>
         </li>
         <li>
-            <a routerLink="/register" routerLinkActive="active">Register</a>
+            <!-- <a routerLink="/register" routerLinkActive="active">Register</a> -->
+            <a *ngIf="!isLoggedIn" routerLink="/register" routerLinkActive="active">Register</a>
         </li>
 
+<!-- Test 201023: -->
         <li>
-            <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
+            <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn; else elseBlock">Login</a>
             <!-- <a routerLink="/login" routerLinkActive="active">Login</a> -->
+        </li>
+
+        <ng-template #elseBlock>
+            <a (click)="onLogout()" class="logout">Logout</a>
+        </ng-template>
+<!-- End test 201023: -->
+
+<!-- Old: -->
+        <!-- <li>
+            <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login</a>
         </li>
 
         <li>
             <a *ngIf="isLoggedIn" (click)="onLogout()" class="logout">Logout</a>
-            <!-- <button (click)="onLogout()">Logout</button> -->
-        </li>
+        </li> -->
+<!-- End old -->
 
       </ul>
     </nav>
@@ -41,7 +53,7 @@
         <!-- an element that is a router directive and that tells the router where to display routed views:-->
         <router-outlet></router-outlet>
     </main>
-    <footer>
-        <p class="copyright">Katja Tibe &copy; 2020</p>
-    </footer>
 </div> <!--End id="wrapper"-->
+<footer>
+    <p class="copyright">Katja Tibe &copy; 2020</p>
+</footer>

@@ -8,22 +8,23 @@ import { MeService } from './me.service';
   providers: [ MeService ]
 })
 export class MeComponent implements OnInit, OnDestroy {
-    meText = "Tjänstledig småländsk sjukgymnast och IT-utbildare som när hon inte kämpar med kursen jsramverk gärna plockar kantareller och lingon, lagar god mat och ser på film och hockeyX.";
+    meText = 'Tjänstledig småländsk sjukgymnast och IT-utbildare som när hon inte kämpar med kursen jsramverk gärna plockar kantareller och lingon, lagar god mat och ser på film och hockeyX.';
     private subscription: any;
-    texts: object;
+    texts: object; // an array object
 
 
     constructor(private meService: MeService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.subscription = this.meService.fetchMe()
         // this.meService.fetchMe()
             .subscribe((data) => {
-                this.texts = data.data;
+                // this.texts = data.data;
+                this.texts = data.data.data;
             });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 }

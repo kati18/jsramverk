@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { ReportsService } from './reports.service';
 import { LoginService } from '../login/login.service';
 
@@ -8,9 +8,10 @@ import { LoginService } from '../login/login.service';
     styleUrls: ['./reports.component.css'],
     providers: [ ReportsService, LoginService ]
 })
-export class ReportsComponent implements OnInit, OnDestroy {
-    reportTexts: object; //an array object
+export class ReportsComponent implements OnInit, AfterContentChecked, OnDestroy {
+    reportTexts: object; // an array object
     private subscription: any;
+    errorMessage = '';
     isLoggedIn: boolean;
 
     constructor(
@@ -24,17 +25,23 @@ export class ReportsComponent implements OnInit, OnDestroy {
             .subscribe((data) => {
                 // console.log("data från reports.component.ts: ", data);
                 // console.log("data.data från reports.component.ts: ", data.data);
-                this.reportTexts = data.data;
-                console.log(this.reportTexts);
-        });
+                this.reportTexts = data.data.data;
+                console.log('reports: ', this.reportTexts);
+            },
+        (error) => {
+            // console.log("error: ", error);
+            this.errorMessage = error.error.errors.title;
+            console.log('errorMessage: ', this.errorMessage);
+            }
+        );
         this.isLoggedIn = this.loginService.isLoggedIn();
     }
 
-    ngAfterContentChecked() {
+    ngAfterContentChecked(): void {
         this.isLoggedIn = this.loginService.isLoggedIn();
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.subscription.unsubscribe();
     }
 }

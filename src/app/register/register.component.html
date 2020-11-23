@@ -1,15 +1,15 @@
-<h1 *ngIf="!submitted">Welcome to register!</h1>
+<h1 *ngIf="!submitted" id="register-title">Welcome to register!</h1>
 <h2 *ngIf="submitted">You are now registered and can log in to add and/or edit reports.</h2>
 
 <!-- Below in order to tell Angular that there is a model for the form as well as listening for a submit event emitted by the form element. The submit event is triggered by clicking the button with a type="submit" and is caught by the ngSubmit directive(the ngSubmit directive binds itself to the click event of the button with type="submit") which then invokes the onSubmit() method in register.component.ts -->
 <form *ngIf="!submitted" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <fieldset>
-        <legend>Register</legend>
+        <legend class="register-legend">Register</legend>
         <p>
-            <label>
+            <label class="register-label">
                 E-mail:
                 <!-- In order to bind the form fields to the FormControl models in register.component.ts one uses the FormControlName directive - the values of the form control names(formControlName) below are set to the name of the corresponding FormControl instance in the component class i e in register.component.ts:-->
-                <input type="e-mail" name="e-mail" formControlName="email" required>
+                <input type="e-mail" name="e-mail" formControlName="email" required placeholder="Enter e-mail" class="register-input">
                 <div class="form-control-feedback"
                 *ngIf="email.errors && (email.dirty || email.touched)">
                 <p *ngIf="email.errors.required">Email is required</p>
@@ -19,12 +19,12 @@
             </label>
         </p>
         <p>
-            <label>
+            <label class="register-label">
                 Password:
-                <input type="password" name="password" formControlName="password" required>
+                <input type="password" name="password" formControlName="password" required placeholder="Enter password" class="register-input">
             </label>
         </p>
-        <button type="submit" [disabled]="!registerForm.valid">Register</button>
+        <button type="submit" [disabled]="!registerForm.valid" class="register-button">Register</button>
     </fieldset>
 </form>
 

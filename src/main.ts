@@ -1,6 +1,6 @@
-//This file is the entrypoint of the application as pointed out in
-//me-angular/angular.json under the node
-//projects -> GettingStarted -> architect -> build -> options -> main
+// This file is the entrypoint of the application as pointed out in
+// me-angular/angular.json under the node
+// projects -> GettingStarted -> architect -> build -> options -> main
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

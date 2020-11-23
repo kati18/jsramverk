@@ -1,6 +1,6 @@
-//Copy from register, to be edited:
+// Copy from register, to be edited:
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnDestroy  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -9,6 +9,7 @@ import { ReportService } from './report.service';
 import {Router} from '@angular/router';
 import { LoginService } from '../login/login.service';
 
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -16,7 +17,7 @@ import { LoginService } from '../login/login.service';
   providers: [ ReportService, LoginService ]
   // providers: [ ReportService, MarkdownService ]
 })
-export class ReportComponent implements OnInit, OnDestroy {
+export class ReportComponent implements OnInit, AfterContentChecked, OnDestroy {
     // kmom: string;
     // reportText = "";
     private subscription: any;
@@ -29,9 +30,10 @@ export class ReportComponent implements OnInit, OnDestroy {
         kmom: new FormControl(''), // the class FormControl extends the class AbstractControl
         reportText: new FormControl('') // the class FormControl extends the class AbstractControl
     });
-    errorMessage = "";
-    successMessage = "";
+    errorMessage = '';
+    successMessage = '';
     isLoggedIn: boolean;
+    buttonDisabled = false;
 
 
     constructor(
@@ -39,67 +41,87 @@ export class ReportComponent implements OnInit, OnDestroy {
         private location: Location,
         private reportService: ReportService,
         private router: Router,
-        private loginService: LoginService
+        private loginService: LoginService,
         // private markdownService: MarkdownService
     ) { }
+
 
     ngOnInit(): void {
         // 201007: Below code from efo and necessary if one changes one´s mind and
         // need/want to log in before being able to change a reporttext.:
-        this.subscription = this.route.params.subscribe(params => {
+        this.subscription = this.route.paramMap.subscribe(params => {
         // this.route.params.subscribe(params => {
-            console.log("params: ", params);
-            // this.kmom = params["week_no"];
-            this.reportForm.get("kmom").setValue(params["week_no"]);
+            console.log('params: ', params);
 
-            console.log("Kmom: ", this.reportForm.get('kmom').value);
+            // const kmomValue = params.get('week_no');
+            // this.reportForm.get('kmom').setValue(kmomValue);
+            // alt.:
+            this.reportForm.get('kmom').setValue(params.get('week_no'));
+
+            console.log('Kmom: ', this.reportForm.get('kmom').value);
 
             this.reportService.fetchReport(this.reportForm.get('kmom').value)
                 .subscribe((data) => {
                     // this.reportText = data.report_text;
-                    this.reportForm.get("reportText").setValue(data.report_text);
+                    // this.reportForm.get('reportText').setValue(data.report_text);
+                    this.reportForm.get('reportText').setValue(data.data.data.report_text);
+
                     // this.reportText = this.markdownService.compile(data.report_text);
-                    console.log("reportText: ", this.reportForm.get('reportText').value);
-                    // console.log("Type of this.reportText: ", typeof this.reportText); //string
-                });
+                    console.log('reportText: ', this.reportForm.get('reportText').value);
+                    // console.log('Type of this.reportText: ', typeof this.reportText); //string
+                },
+                (error) => {
+                    // console.log('error: ', error);
+                    this.errorMessage = error.error.errors.title;
+                    this.reportForm.get('reportText').setValue(error.error.errors.detail);
+                    this.reportForm.get('reportText').disable();
+                    this.buttonDisabled = true;
+                    console.log('errorMessage: ', this.errorMessage);
+                }
+                );
         });
+
     }
 
-    ngAfterContentChecked() {
+
+    ngAfterContentChecked(): void {
         this.isLoggedIn = this.loginService.isLoggedIn();
     }
 
-// 201007: The function ngOnDestroy is needed for the onSubmit function but also for the ngOnInit
-// if one changes one´s mind and need/want to log in before being able to change a reporttext.:
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+    // shorthand syntax, in order to get the value of kmom in report.component.html {{ kmom.value }}
+    get kmom(): any { return this.reportForm.get('kmom'); }
 
 
-    onSubmit() {
+    onSubmit(): void {
 
         // this.subscription = this.reportService.updateReport(this.reportForm.value)
         this.reportService.updateReport(this.reportForm.value)
         // this.reportService.updateReport(formData)
             .subscribe(
                 (data) => {
-                console.log("data från report.comp.ts: ", data);
-                // console.log("data.data: ", data.data);
-                // this.successMessage = data.data;
-                // console.log("successMessage: ", this.successMessage);
+                // console.log('data från report.comp.ts: ', data);
+                // console.log('data.data: ', data.data);
+                this.successMessage = data.data.message;
+                console.log('successMessage: ', this.successMessage);
                 // this.submitted = true;
-                // console.log("data.data.token: ", data.data.token);
+                // console.log('data.data.token: ', data.data.token);
                 this.router.navigate(['/reports']);
             },
                 (error) => {
-                    console.log("error: ", error);
+                    console.log('error: ', error);
                     this.errorMessage = error.error.errors.title;
-                    console.log("errorMessage: ", this.errorMessage);
+                    console.log('errorMessage: ', this.errorMessage);
                 }
             );
 
-        // Manual redirection to route "/reports" as in app.component.html:
+        // Manual redirection to route '/reports' as in app.component.html:
         // this.router.navigate(['/reports']);
+    }
+
+    // 201007: The function ngOnDestroy is needed for the onSubmit function but also for the ngOnInit
+    // if one changes one´s mind and need/want to log in before being able to change a reporttext.:
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
 }

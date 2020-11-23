@@ -1,20 +1,58 @@
-<form *ngIf="isLoggedIn" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
-    <label>
-        Kmom:
-        <!-- comment: the form control kmom in report.component.ts is registered to/
-        assigned to the kmom input element:-->
-        <input type="kmom" name="kmom" formControlName="kmom">
-    </label>
+<!-- <form class="report-form" *ngIf="isLoggedIn" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="label-text-full-width" appearance="none" id="katja">
+        <mat-label class="report-label" id="report-label">Kmom 0{{ kmom.value }}:</mat-label> -->
+            <!-- comment: the form control kmom in report.component.ts is registered to/
+            assigned to the kmom input element:-->
+            <!-- <input matInput type="text" name="kmom" formControlName="kmom" class="label-text" hidden readonly>
+    </mat-form-field>
 
-    <p>
-        <!-- comment: the form control reportText in report.component.ts is registered to/
-        assigned to the reportText input element:-->
-        <input type="reportText" name="reportText" formControlName="reportText" class="reportText">
-    </p>
-
+    <mat-form-field class="report-text-full-width" appearance="none">
+        <mat-label>Report text to be added/edited:</mat-label> -->
+            <!-- <input matInput type="text" name="reportText" formControlName="reportText" class="reportText"> -->
+            <!-- <textarea matInput mat-autosize type="text" name="reportText" formControlName="reportText" class="report-text"></textarea>
+    </mat-form-field>
 
     <p>
       <button type="submit" [disabled]="!reportForm.valid">Update report</button>
+    </p>
+</form>
+
+<h3 *ngIf="!isLoggedIn">If you want to edit and/or add a text you need to be logged in.</h3> -->
+
+
+
+<form class="report-form" *ngIf="isLoggedIn" [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="label-text-full-width" appearance="none" *ngIf="kmom.value!=='10'; else elseBlock">
+
+        <mat-label class="report-label">Kmom 0{{ kmom.value }}:</mat-label>
+            <!-- comment: the form control kmom in report.component.ts is registered to/
+            assigned to the kmom input element:-->
+            <input matInput type="text" name="kmom" formControlName="kmom" class="label-text" hidden readonly>
+
+    </mat-form-field>
+
+    <ng-template #elseBlock>
+        <mat-label class="report-label">Kmom {{ kmom.value }}:</mat-label>
+            <!-- comment: the form control kmom in report.component.ts is registered to/
+            assigned to the kmom input element:-->
+            <input matInput type="text" name="kmom" formControlName="kmom" class="label-text" hidden readonly>
+    </ng-template>
+
+    <mat-form-field class="report-text-full-width" appearance="none">
+        <mat-label>Report text to be added/edited:</mat-label>
+            <!-- <input matInput type="text" name="reportText" formControlName="reportText" class="reportText"> -->
+            <textarea matInput mat-autosize type="text" name="reportText" formControlName="reportText" class="report-text"></textarea>
+    </mat-form-field>
+
+    <p>
+      <!-- <button type="submit" [disabled]="!reportForm.valid" class="report-button">Update report</button> -->
+        <button
+        type="submit"
+        [disabled]="buttonDisabled"
+        class="report-button"
+        [ngStyle]="{'color': (buttonDisabled)? 'gray': 'black'}">
+        Update report
+        </button>
     </p>
 </form>
 

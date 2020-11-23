@@ -20,13 +20,13 @@ export class RegisterComponent implements OnInit {
     // register.component.html:
         email: new FormControl('', [
             Validators.required,
-            Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+            Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
         ]), // the class FormControl extends the class AbstractControl
         password: new FormControl('', Validators.required)
     });
     katja: object;
-    errorMessage = "";
-    successMessage = "";
+    errorMessage = '';
+    successMessage = '';
     submitted = false;
 
     constructor(
@@ -37,30 +37,30 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    get email() { return this.registerForm.get('email'); }//???
+    get email(): any { return this.registerForm.get('email'); }// ???
 
-    get password() { return this.registerForm.get('password'); }//???
+    get password(): any { return this.registerForm.get('password'); }// ???
 
-    onSubmit() {
+    onSubmit(): void {
         // console.warn(this.registerForm.value);
         // console.log(this.registerForm.value);
         // console.log(this.registerForm.get('email').value);
         // console.log(this.registerForm.get('password').value);
-        let formData = this.registerForm.value;
+        const formData = this.registerForm.value;
         console.log(formData.email);
 
         this.registerService.register(this.registerForm.value)
             .subscribe(
                 (data) => {
-                this.successMessage = data.data;
-                console.log("successMessage: ", this.successMessage);
+                this.successMessage = data.data.message;
+                console.log('successMessage: ', this.successMessage);
                 this.submitted = true;
                 // this.router.navigate(['/login']);
             },
                 (error) => {
-                    console.log("error: ", error);
+                    console.log('error: ', error);
                     this.errorMessage = error.error.errors.title;
-                    console.log("errorMessage: ", this.errorMessage);
+                    console.log('errorMessage: ', this.errorMessage);
                 }
             );
 

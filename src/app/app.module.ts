@@ -7,8 +7,11 @@ import { MarkdownModule } from 'ngx-markdown';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-//Below delares the reactive-form directives needed to use reactive forms
+// Below delares the reactive-form directives needed to use reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
+// import {AutoSizeInputModule} from 'ngx-autosize-input'; //201016: not in use now
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { MeComponent } from './me/me.component';
@@ -18,6 +21,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from './login/login.component';
 
 import { httpInterceptorProviders } from './http-interceptors/index';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,12 +37,17 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     AppRoutingModule,
     MarkdownModule.forRoot(),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // AutoSizeInputModule,// not in use 201016
+    MatInputModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule
   ],
   providers: [
     httpInterceptorProviders
   ],
-  //The main application view, called the root component and top level component, which hosts all other app views. Only the root NgModule should set the bootstrap property:
+  // The main application view, called the root component and top level component,
+  // which hosts all other app views. Only the root NgModule should set the bootstrap property:
   bootstrap: [AppComponent]
 })
 export class AppModule {

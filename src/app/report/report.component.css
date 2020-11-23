@@ -1,1 +1,69 @@
+/* .reportTextP {
+    width: 80%; */
+    /* display: inline-block; */
+    /* display: block;
+    height: auto;
+    padding: 0.5em;
+    overflow: auto;
+} */
 
+.report-form {
+  min-width: 150px;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* below has no effect on style at all: */
+.label-text-full-width{
+    /* padding-bottom: 0;
+    margin-bottom: 0; */
+    /* background-color: green; */
+}
+/* End below has no effect on style at all: */
+
+.report-text-full-width {
+  width: 100%;
+  background-color: white;
+  color: #333;
+  padding: 0.5em;
+}
+
+.report-text {
+    color: #333;
+    line-height: 1.4;
+}
+
+.report-label {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    /* background-color: yellow; */
+    /* padding: 0; */
+    /* margin-bottom: 0; */
+}
+
+.label-text {
+    /* background-color: blue; */
+}
+
+/* Does not work: */
+/* #katja div.mat-form-field-wrapper.ng-tns-c66-0.label-text-full-width {
+    padding-bottom: 0; */
+/* } */
+
+/* .mat-form-field-wrapper{
+    padding-bottom:0;
+} */
+
+.report-button {
+    background-color: #fff;
+    color: #333;
+    font-size: 1em;
+    padding: 0.4rem 1rem;
+    border-radius: 0.2rem;
+}
+
+.register-button:active {
+    background-color: #a6a6a6;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
