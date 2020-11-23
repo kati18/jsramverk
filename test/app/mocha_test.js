@@ -172,7 +172,7 @@ test.describe("Me-app", function() {
         browser.findElement(By.className("register-button")).then(function(buttonElement) {
             buttonElement.isEnabled().then(function(value) {
                 assert.equal(value, true);
-            })
+            });
         });
 
         done();
@@ -213,7 +213,7 @@ test.describe("Me-app", function() {
         browser.findElement(By.className("login-button")).then(function(buttonElement) {
             buttonElement.isEnabled().then(function(value) {
                 assert.equal(value, true);
-            })
+            });
         });
 
         done();
@@ -234,7 +234,7 @@ test.describe("Me-app", function() {
         browser.findElement(By.className("register-button")).then(function(buttonElement) {
             buttonElement.isEnabled().then(function(value) {
                 assert.equal(value, false);
-            })
+            });
         });
 
         done();
@@ -255,17 +255,17 @@ test.describe("Me-app", function() {
         browser.findElement(By.className("login-button")).then(function(buttonElement) {
             buttonElement.isEnabled().then(function(value) {
                 assert.equal(value, false);
-            })
+            });
         });
 
         done();
     });
 
 
-    test.it("Test to ensure me info is fetched", function(done) {
+    test.it("Test to ensure me info is fetched", async function(done) {
         goToNavLink("Me");
 
-        browser.findElement(By.id("me-description")).then(function(descrElement) {
+        await browser.findElement(By.id("me-description")).then(function(descrElement) {
             descrElement.getText().then(function(meText) {
                 // console.log("reportText: ", meText);
                 assert.ok(meText.startsWith("Tjänstledig småländsk"));
@@ -277,14 +277,12 @@ test.describe("Me-app", function() {
     });
 
 
-    test.it("Test to ensure report kmom03 is fetched", function(done) {
+    test.it("Test to ensure report kmom03 is fetched", async function(done) {
         goToNavLink("Reports");
 
         let text = "Kmom 03";
 
-        let promiseReportText = browser.findElement(By.id("3"));
-
-        promiseReportText.then(function(reportElement) {
+        await browser.findElement(By.id("3")).then(function(reportElement) {
             reportElement.getText().then(function(reportText) {
                 // console.log("reportText: ", reportText);
                 // console.log("text: ", text);

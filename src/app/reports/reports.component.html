@@ -11,7 +11,8 @@
         <a  *ngIf="isLoggedIn" routerLink="/reports/week/{{ reportText.week_no }}">Edit</a>
     </div>
     <ng-template #elseBlock>
-        <h2 [id]="reportText.week_no"> Kmom 0{{ reportText.week_no }}</h2>
+        <!-- <h2 [id]="reportText.week_no"> Kmom 0{{ reportText.week_no }}</h2> -->
+        <h2 id="{{ reportText.week_no }}"> Kmom 0{{ reportText.week_no }}</h2>
         <p markdown ngPreserveWhitespace> {{ reportText.report_text }}</p>
         <a  *ngIf="isLoggedIn" routerLink="/reports/week/{{ reportText.week_no }}">Edit</a>
     </ng-template>
