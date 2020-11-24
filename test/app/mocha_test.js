@@ -294,6 +294,25 @@ test.describe("Me-app", function() {
     });
 
 
+    test.it("Copy test to ensure report kmom03 is fetched", function(done) {
+        goToNavLink("Reports");
+
+        let text = "Kmom 03";
+
+        browser.findElement(By.id("3")).then(function(reportElement) {
+            reportElement.getText().then(function(reportText) {
+                // console.log("reportText: ", reportText);
+                // console.log("text: ", text);
+                assert.equal(reportText, text);
+            });
+        }).then(function() {
+            done();
+        }).catch(function(error) {
+            // console.log("Error.message: ", error.message);
+        });
+    });
+
+
     test.it("Test to ensure report kmom03 is fetched", async function(done) {
         goToNavLink("Reports");
 
