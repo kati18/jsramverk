@@ -4,7 +4,7 @@
 /dist_copy
 
 # compiled output
-# /dist - required for functional/UI-testing
+/dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
