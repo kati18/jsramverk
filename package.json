@@ -9,7 +9,7 @@
     "ng": "ng",
     "start-server": "http-server -p 8084 ./dist/me-angular",
     "build": "ng build",
-    "test-command": "mocha test/**/*.js --timeout 10000",
+    "test-command": "mocha test/**/*.js --timeout 1000000",
     "test": "start-server-and-test start-server http://localhost:8084 test-command",
     "posttest": "npm run lint",
     "lint": "ng lint",
