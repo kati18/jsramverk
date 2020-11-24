@@ -11,6 +11,9 @@ env:
     global:
         - MOZ_HEADLESS=1
 
+addons:
+    firefox: "68.1"
+
 git:
     submodules: false
 
