@@ -279,21 +279,6 @@ test.describe("Me-app", function() {
     });
 
 
-    test.it("Test to ensure me info is fetched", async function(done) {
-        goToNavLink("Me");
-
-        await browser.findElement(By.id("me-description")).then(function(descrElement) {
-            descrElement.getText().then(function(meText) {
-                // console.log("reportText: ", meText);
-                assert.ok(meText.startsWith("Tjänstledig småländsk"));
-                assert.ok(meText.endsWith("film och hockey."));
-            });
-        });
-
-        done();
-    });
-
-
     test.it("Copy test to ensure report kmom03 is fetched", function(done) {
         goToNavLink("Reports");
 
@@ -310,23 +295,6 @@ test.describe("Me-app", function() {
         }).catch(function(error) {
             // console.log("Error.message: ", error.message);
         });
-    });
-
-
-    test.it("Test to ensure report kmom03 is fetched", async function(done) {
-        goToNavLink("Reports");
-
-        let text = "Kmom 03";
-
-        await browser.findElement(By.id("3")).then(function(reportElement) {
-            reportElement.getText().then(function(reportText) {
-                // console.log("reportText: ", reportText);
-                // console.log("text: ", text);
-                assert.equal(reportText, text);
-            });
-        });
-
-        done();
     });
 
 });
