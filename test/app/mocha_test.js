@@ -262,24 +262,7 @@ test.describe("Me-app", function() {
     });
 
 
-    test.it("Copy test to ensure me info is fetched", function(done) {
-        goToNavLink("Me");
-
-        browser.findElement(By.id("me-description")).then(function(descrElement) {
-            descrElement.getText().then(function(meText) {
-                // console.log("reportText: ", meText);
-                assert.ok(meText.startsWith("Tjänstledig småländsk"));
-                assert.ok(meText.endsWith("film och hockey."));
-            });
-        }).then(function() {
-            done();
-        }).catch(function(error) {
-            // console.log("Error.message: ", error.message);
-        });
-    });
-
-
-    test.it("Copy test to ensure report kmom03 is fetched", function(done) {
+    test.it("Test to ensure report kmom03 is fetched", function(done) {
         goToNavLink("Reports");
 
         let text = "Kmom 03";

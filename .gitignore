@@ -2,6 +2,7 @@
 
 *_copy*.*
 /dist_copy
+.nyc_output
 
 # compiled output
 /dist

@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/kati18/jsramverk-frontend.svg?branch=master)](https://travis-ci.org/kati18/jsramverk-frontend)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/badges/build.png?b=master)](https://scrutinizer-ci.com/g/kati18/jsramverk-frontend/build-status/master)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
@@ -20,13 +19,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Running UI tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test` to execute the UI tests via Selenium and mocha.
 
 ## Further help
 

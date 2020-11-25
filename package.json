@@ -8,9 +8,9 @@
   "scripts": {
     "ng": "ng",
     "old-start-server": "http-server -p 8084 ./dist/me-angular",
-    "start-server": " ng serve --port 8084",
+    "start-server": "ng serve --port 8084",
     "build": "ng build",
-    "test-command": "mocha test/**/*.js --timeout 10000",
+    "test-command": "mocha 'test/**/*.js' --timeout 10000",
     "test": "start-server-and-test start-server http://localhost:8084 test-command",
     "posttest": "npm run lint",
     "lint": "ng lint",
