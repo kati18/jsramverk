@@ -75,7 +75,7 @@ test.describe("Me-app", function() {
         });
     }
 
-
+    // Test case "Test to go to Index":
     test.it("Test to go to Index", function(done) {
         browser.getTitle().then(function(title) {
                 assert.equal(title, "MeAngular");
@@ -91,6 +91,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test to go to Reports":
     test.it("Test to go to Reports", function(done) {
         goToNavLink("Reports");
         browser.getTitle().then(function(title) {
@@ -110,6 +111,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test to go to Me":
     test.it("Test to go to Me", function(done) {
         goToNavLink("Me");
         browser.getTitle().then(function(title) {
@@ -126,6 +128,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test to go to Register":
     test.it("Test to go to Register", function(done) {
         goToNavLink("Register");
         browser.getTitle().then(function(title) {
@@ -142,6 +145,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test to go to Login":
     test.it("Test to go to Login", function(done) {
         goToNavLink("Login");
         browser.getTitle().then(function(title) {
@@ -158,6 +162,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test if button for registration is enabled":
     test.it("Test if button for registration is enabled", function(done) {
         goToNavLink("Register");
 
@@ -178,6 +183,8 @@ test.describe("Me-app", function() {
         done();
     });
 
+
+    // Test case "Copy test if button for registration is enabled":
     test.it("Copy Test if button for registration is enabled", function(done) {
         goToNavLink("Register");
 
@@ -199,6 +206,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test if button for login is enabled":
     test.it("Test if button for login is enabled", function(done) {
         goToNavLink("Login");
 
@@ -220,6 +228,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test if button for registration is enabled when missing @ in email":
     test.it("Test if button for registration is enabled when missing @ in email", function(done) {
         goToNavLink("Register");
 
@@ -241,6 +250,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test if button for registration is enabled when missing password":
     test.it("Test if button for login is enabled when missing password", function(done) {
         goToNavLink("Login");
 
@@ -262,6 +272,7 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Test to ensure report kmom03 is fetched":
     test.it("Test to ensure report kmom03 is fetched", function(done) {
         goToNavLink("Reports");
 
@@ -278,6 +289,40 @@ test.describe("Me-app", function() {
         }).catch(function(error) {
             // console.log("Error.message: ", error.message);
         });
+    });
+
+
+    // Added 201126 kl 12.10: Test case "Test to ensure report kmom03 is fetched":
+    test.it("Copy test to ensure report kmom03 is fetched", async function(done) {
+        goToNavLink("Reports");
+
+        let text = "Kmom 03";
+
+        await browser.findElement(By.id("3")).then(async function(reportElement) {
+            await reportElement.getText().then(async function(reportText) {
+                // console.log("reportText: ", reportText);
+                // console.log("text: ", text);
+                await assert.equal(reportText, text);
+            });
+        });
+
+        done();
+    });
+
+
+    // Added 201126 kl 12.10: Test case "Test to ensure me is fetched":
+    test.it("Test to ensure me info is fetched", async function(done) {
+        goToNavLink("Me");
+
+        await browser.findElement(By.id("me-description")).then(async function(descrElement) {
+            await descrElement.getText().then(async function(meText) {
+                // console.log("reportText: ", meText);
+                await assert.ok(meText.startsWith("Tjänstledig småländsk"));
+                await assert.ok(meText.endsWith("film och hockey."));
+            });
+        });
+
+        done();
     });
 
 });
