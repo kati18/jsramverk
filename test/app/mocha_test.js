@@ -4,12 +4,17 @@
 "use strict";
 
 const assert = require("assert");
-// wraps Mocha so it does not have to be imported:
+/**
+ * a webdriver test object that provides awareness that webdriver is being used,
+ * wraps around MochaJS test functions(before, beforeEach, it etc),
+ * wraps Mocha so it does not have to be imported:
+ */
 const test = require("selenium-webdriver/testing");
 const webdriver = require("selenium-webdriver");
 const firefox = require('selenium-webdriver/firefox');
 const By = webdriver.By;
 
+// The Selenium Webdriver object:
 let browser;
 
 
@@ -42,7 +47,6 @@ test.describe("Me-app", function() {
 
     function matchUrl(target) {
         browser.getCurrentUrl().then(function(url) {
-            // console.log("url från matchUrl: ", url);
             // console.log("target från matchUrl: ", target);
             // console.log("url från matchUrl: ", url);
             assert.ok(url.endsWith(target));
@@ -63,10 +67,10 @@ test.describe("Me-app", function() {
     }
 
 
-    function assertById(target, idToFind) {
+    async function assertById(target, idToFind) {
         // console.log("target från assertById", target);
         // console.log("idToFind från assertById", idToFind);
-        browser.findElement(By.id(idToFind)).then(async function(element) {
+        await browser.findElement(By.id(idToFind)).then(async function(element) {
             await element.getText().then(function(text) {
                 // console.log("text från assertById: ", text);
                 assert.equal(text, target);
@@ -272,57 +276,43 @@ test.describe("Me-app", function() {
     });
 
 
-    // Test case "Test to ensure report kmom03 is fetched":
-    test.it("Test to ensure report kmom03 is fetched", function(done) {
+    // Added 201126 kl 16.50: Test case "Test to ensure report kmom03 is fetched":
+    test.it("Copy test to ensure report kmom03 is fetched", function(done) {
+        let reportText = "Kmom 03";
+
         goToNavLink("Reports");
-
-        let text = "Kmom 03";
-
-        browser.findElement(By.id("3")).then(function(reportElement) {
-            reportElement.getText().then(function(reportText) {
-                // console.log("reportText: ", reportText);
-                // console.log("text: ", text);
-                assert.equal(reportText, text);
+        browser.getTitle().then(function(title) {
+                assert.equal(title, "MeAngular");
+            }).then(function() {
+                    assertById(reportText, "3");
+            }).then(function() {
+                    matchUrl("/reports");
+            }).then(function() {
+                    done();
+            }).catch(function(error) {
+                // console.log("Error.message från sista report kmom03: ", error.message);
             });
-        }).then(function() {
-            done();
-        }).catch(function(error) {
-            // console.log("Error.message: ", error.message);
-        });
     });
 
 
-    // Added 201126 kl 12.10: Test case "Test to ensure report kmom03 is fetched":
-    test.it("Copy test to ensure report kmom03 is fetched", async function(done) {
-        goToNavLink("Reports");
+    // Added 201126 kl 16.30: Test case "Test to ensure me is fetched":
+    test.it("Copy test to ensure me info is fetched", function(done) {
+        let meText = "Tjänstledig småländsk sjukgymnast och IT-utbildare som när hon inte kämpar" +
+        " med kursen jsramverk gärna plockar kantareller och lingon, lagar god mat" +
+        " och ser på film och hockey.";
 
-        let text = "Kmom 03";
-
-        await browser.findElement(By.id("3")).then(async function(reportElement) {
-            await reportElement.getText().then(async function(reportText) {
-                // console.log("reportText: ", reportText);
-                // console.log("text: ", text);
-                await assert.equal(reportText, text);
-            });
-        });
-
-        done();
-    });
-
-
-    // Added 201126 kl 12.10: Test case "Test to ensure me is fetched":
-    test.it("Test to ensure me info is fetched", async function(done) {
         goToNavLink("Me");
-
-        await browser.findElement(By.id("me-description")).then(async function(descrElement) {
-            await descrElement.getText().then(async function(meText) {
-                // console.log("reportText: ", meText);
-                await assert.ok(meText.startsWith("Tjänstledig småländsk"));
-                await assert.ok(meText.endsWith("film och hockey."));
+        browser.getTitle().then(function(title) {
+                assert.equal(title, "MeAngular");
+            }).then(function() {
+                    assertById(meText, "me-description");
+            }).then(function() {
+                    matchUrl("/");
+            }).then(function() {
+                    done();
+            }).catch(function(error) {
+                // console.log("Error.message från sista me: ", error.message);
             });
-        });
-
-        done();
     });
 
 });
