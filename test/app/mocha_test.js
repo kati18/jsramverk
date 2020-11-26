@@ -166,30 +166,30 @@ test.describe("Me-app", function() {
     });
 
 
+    // Test case "Copy test if button for registration is enabled":
+    // test.it("Copy test if button for registration is enabled", function(done) {
+    //     goToNavLink("Register");
+    //
+    //     let promiseInputs = browser.findElements(By.className("register-input"));
+    //
+    //     promiseInputs.then(function(inputElements) {
+    //         // console.log("inputElements: ", inputElements);
+    //         inputElements[0].sendKeys("katja.18@test.se");
+    //         inputElements[1].sendKeys("fakePassword");
+    //     });
+    //
+    //     browser.findElement(By.className("register-button")).then(function(buttonElement) {
+    //         buttonElement.isEnabled().then(function(value) {
+    //             assert.equal(value, true);
+    //         });
+    //     });
+    //
+    //     done();
+    // });
+
+
     // Test case "Test if button for registration is enabled":
     test.it("Test if button for registration is enabled", function(done) {
-        goToNavLink("Register");
-
-        let promiseInputs = browser.findElements(By.className("register-input"));
-
-        promiseInputs.then(function(inputElements) {
-            // console.log("inputElements: ", inputElements);
-            inputElements[0].sendKeys("katja.18@test.se");
-            inputElements[1].sendKeys("fakePassword");
-        });
-
-        browser.findElement(By.className("register-button")).then(function(buttonElement) {
-            buttonElement.isEnabled().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        done();
-    });
-
-
-    // Test case "Copy test if button for registration is enabled":
-    test.it("Copy Test if button for registration is enabled", function(done) {
         goToNavLink("Register");
 
         browser.findElements(By.className("register-input")).then(function(inputElements) {
@@ -254,7 +254,7 @@ test.describe("Me-app", function() {
     });
 
 
-    // Test case "Test if button for registration is enabled when missing password":
+    // Test case "Test if button for login is enabled when missing password":
     test.it("Test if button for login is enabled when missing password", function(done) {
         goToNavLink("Login");
 
@@ -276,8 +276,8 @@ test.describe("Me-app", function() {
     });
 
 
-    // Added 201126 kl 16.50: Test case "Test to ensure report kmom03 is fetched":
-    test.it("Copy test to ensure report kmom03 is fetched", function(done) {
+    // Test case "Test to ensure report kmom03 is among fetched reports":
+    test.it("Test to ensure report kmom03 is among fetched reports", function(done) {
         let reportText = "Kmom 03";
 
         goToNavLink("Reports");
@@ -295,8 +295,8 @@ test.describe("Me-app", function() {
     });
 
 
-    // Added 201126 kl 16.30: Test case "Test to ensure me is fetched":
-    test.it("Copy test to ensure me info is fetched", function(done) {
+    // Test case "Test to ensure me description is fetched":
+    test.it("Test to ensure me description is fetched", function(done) {
         let meText = "Tjänstledig småländsk sjukgymnast och IT-utbildare som när hon inte kämpar" +
         " med kursen jsramverk gärna plockar kantareller och lingon, lagar god mat" +
         " och ser på film och hockey.";
