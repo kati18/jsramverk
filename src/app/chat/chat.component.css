@@ -1,0 +1,60 @@
+.message-container {
+    overflow-y: auto;
+    height: 300px;
+    padding: 15px;
+}
+
+.message-row {
+    background-color: white;
+    color: red;
+    border-radius: 0.25em;
+    padding: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.message-user-timestamp, .message-text {
+    margin: 0 0;
+}
+
+.username-label {
+    display: block;
+    font-size: 1.2em;
+}
+
+.username-input {
+    width: 40%;
+    padding: 0.4em;
+    border-radius: 0.1em;
+    font-size: 1.2em;
+    display: block;
+}
+
+.chatmessage-label {
+    display: block;
+    font-size: 1.2em;
+}
+
+.chatmessage-input {
+    width: 100%;
+    display: block;
+    /* height: 5vh; */
+    border-radius: 0.1em;
+    font-size: 1.2em;
+    padding: 0.4em;
+    /* overflow: visible; */
+}
+
+.join-button {
+    display: inline;
+    border-radius: 0.15em;
+    font-size: 1em;
+    padding: 0.4em;
+    margin-top: 10px;
+}
+
+.send-button, .leave-button {
+    border-radius: 0.15em;
+    font-size: 1em;
+    padding: 0.4em;
+    margin-top: 10px;
+}

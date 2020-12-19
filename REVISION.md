@@ -16,3 +16,7 @@ v4.0.0 (2020-11-23)
 v4.1.0 (2020-11-26)
 -------------------
 * Functional tests/UI-tests using mocha, selenium-webdriver verified. Http-server removed.
+
+v5.0.0 (2020-12-19)
+-------------------
+* Kmom05 done - chat added and implemented in app.

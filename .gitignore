@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 *_copy*.*
+/*_copy/
 /dist_copy
 .nyc_output
 

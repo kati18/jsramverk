@@ -10,8 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 // Below delares the reactive-form directives needed to use reactive forms
 import { ReactiveFormsModule } from '@angular/forms';
 // import {AutoSizeInputModule} from 'ngx-autosize-input'; //201016: not in use now
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MeComponent } from './me/me.component';
@@ -19,6 +20,7 @@ import { ReportComponent } from './report/report.component';
 import { RegisterComponent } from './register/register.component';
 import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from './login/login.component';
+import { ChatComponent } from './chat/chat.component';
 
 import { httpInterceptorProviders } from './http-interceptors/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReportComponent,
     RegisterComponent,
     ReportsComponent,
-    LoginComponent
+    LoginComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // AutoSizeInputModule,// not in use 201016
     MatInputModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     httpInterceptorProviders

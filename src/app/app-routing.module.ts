@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MeComponent } from './me/me.component';
 import { ReportComponent } from './report/report.component';
 import { ReportsComponent } from './reports/reports.component';
+import { ChatComponent } from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
@@ -14,6 +15,7 @@ or pastes a URL into the browser address bar.*/
 const routes: Routes = [
     { path: 'reports', component: ReportsComponent },
     { path: 'reports/week/:week_no', component: ReportComponent },
+    { path: 'chat', component: ChatComponent },
     { path: 'register', component: RegisterComponent},
     { path: 'login', component: LoginComponent},
     { path: '', component: MeComponent },

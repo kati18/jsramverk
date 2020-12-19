@@ -20,6 +20,11 @@
         <li>
             <a routerLink="/reports" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Reports</a>
         </li>
+
+        <li>
+            <a routerLink="/chat" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Chat</a>
+        </li>
+
         <li>
             <!-- <a routerLink="/register" routerLinkActive="active">Register</a> -->
             <a *ngIf="!isLoggedIn" routerLink="/register" routerLinkActive="active">Register</a>

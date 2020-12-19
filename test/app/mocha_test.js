@@ -26,7 +26,8 @@ test.describe("Me-app", function() {
         browser = new webdriver.Builder().
             withCapabilities(webdriver.Capabilities.firefox()).build();
 
-        // Sets the starting url in browser when the testing begins:
+        // Sets the starting url in browser when the testing begins,
+        // is only a host-server("a place") on which the tests are running:
         // browser.get("http://localhost:8084/app/");
         browser.get("http://localhost:8084/");
         done();

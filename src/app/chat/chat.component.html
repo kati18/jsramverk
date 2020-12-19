@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div *ngIf="!hasJoinedChat" class="welcome-row">
+      <h1>Welcome to Katja´s chat!</h1>
+      <h3>Enter a username and press enter or click the Join button to join the chat.</h3>
+    </div> <!-- End class="welcome-row"-->
+
+    <div *ngIf="hasJoinedChat" class="row">
+      <h1>Katja´s chat!</h1>
+      <p>You have now joined the chat with the given username <strong>{{ user }}</strong>.</p>
+    </div> <!-- End class="row"-->
+
+    <div *ngIf="!hasJoinedChat" class="username-row">
+        <form #joinForm="ngForm" (ngSubmit)="join(joinForm)" novalidate>
+            <label for="username" class="username-label">Username: </label>
+            <input type="text" name="username" required [(ngModel)]="user" id="username-input" class="username-input" placeholder="Enter username">
+            <button type="submit" class="join-button" [disabled]="!joinForm.valid">Join</button>
+        </form>
+    </div> <!-- End of class="username-row" -->
+
+    <div class="row">
+        <div #messageContainer class="message-container" (scroll)="onScroll()">
+            <div class="message-row" *ngFor="let message of messages; let last = last">
+                <p class="message-user-timestamp" ><strong>{{ message.user }} {{ message.timeStamp | date: 'medium':'+0100'}}:</strong></p>
+                <p class="message-text">{{message.message}}</p>
+                {{ last ? scrollToBottom() : '' }}
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="hasJoinedChat" class="chatmessage-row">
+        <form #chatMessageForm="ngForm" (ngSubmit)="sendMessage(chatMessageForm)" novalidate>
+            <label for="chatmessage" class="chatmessage-label">Press enter or click the Send button to send your message: </label>
+
+            <!-- Below code works but the <input> can not grow vertically only horizontally. The code was therefore replaced with the code that has <textarea> instead: -->
+            <!-- <input type="text" name="chatMessage" required [(ngModel)]="messageText" placeholder="Enter chat message here" class="chatmessage-input"> -->
+
+            <textarea type="text" name="chatMessage" required [(ngModel)]="messageText" (keyup)="$event.keyCode == 13 && sendMessage()" placeholder="Enter chat message here" class="chatmessage-input"></textarea>
+            <button type="submit" class="send-button" [disabled]="!chatMessageForm.valid">Send</button>
+        </form>
+    </div>
+
+    <div *ngIf="hasJoinedChat" class="leave-row">
+        <form #leaveForm="ngForm">
+            <button type="button" class="leave-button" (click)="leave()">Leave chat</button>
+        </form>
+    </div>
+
+</div> <!-- End class="container-fluid"-->
