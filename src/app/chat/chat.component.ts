@@ -19,10 +19,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     // messages: string[] = []; // an array of strings?
     messages: object[] = []; // an array of objects?
 
+
     @ViewChild('messageContainer') private messageContainer: ElementRef;
     hasScrolledToBottom = false;
 
     constructor(private chatService: ChatService) {
+        this.chatService.allMessagesReceived()
+            .subscribe(data => this.messages = data);
+
         this.chatService.newUserJoined()
             .subscribe(data => this.messages.push(data));
             // alt below I think:
@@ -37,7 +41,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
             .subscribe(data => this.messages.push(data));
     }
 
+    // ngOnInit(): void {
+    //     this.chatService.getAllMessages()
+    //         .subscribe(data => this.messages = data);
+    //
+    // }
+
     ngOnInit(): void {
+        this.chatService.getAllMessages();
     }
 
     join(): void {

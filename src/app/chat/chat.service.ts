@@ -16,6 +16,23 @@ export class ChatService {
 
     constructor() { }
 
+    getAllMessages(): void {
+        this.socket.emit('getAllMessages');
+    }
+
+    allMessagesReceived(): any {
+        // let observable = new Observable<{user: string, message: string}>(observer => { // lint
+        const observable = new Observable<{user: string, message: object}>(observer => {
+          this.socket.on('all messages', (data) => {
+            observer.next(data);
+          });
+          return () => {this.socket.disconnect(); };
+        });
+
+        return observable;
+    }
+
+
     joinRoom(data): void {
         this.socket.emit('join', data);
     }

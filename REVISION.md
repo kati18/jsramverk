@@ -20,3 +20,7 @@ v4.1.0 (2020-11-26)
 v5.0.0 (2020-12-19)
 -------------------
 * Kmom05 done - chat added and implemented in app.
+
+v6.0.0 (2021-01-01)
+-------------------
+* Kmom06 done - chat history added and implemented in app.
